@@ -7,7 +7,7 @@ let tags = {
   'main': 'INFO 📚',
   'buscador': 'BUSQUEDAS 🔎',
   'fun': 'JUEGOS 🎮',
-  'jadibot': 'SUB BOTS 🤖',
+  'serbot': 'SUB BOTS 🤖',
   'rpg': 'RPG 🌠',
   'rg': 'REGISTRO 📁',
   'xp': 'EXP 🏷',
@@ -18,55 +18,53 @@ let tags = {
   'grupo': 'GRUPOS 👥',
   'nable': 'ON / OFF 📴', 
   'descargas': 'DESCARGAS 📥',
-  'youtube': 'YOUTUBE PLAY 📥',
   'tools': 'HERRAMIENTAS 🔧',
   'info': 'INFORMACIÓN 🐢',
   'nsfw': 'NSFW 🔞', 
   'owner': 'CREADOR 👑', 
-  'mods': 'STAFF YAEMORI 🍟',
   'audio': 'AUDIOS 🔉', 
   'ai': 'AI 🌹',
   'transformador': 'CONVERTIDORES 🚩',
 }
 
 const defaultMenu = {
-  before: `*─ׄ─ׅ─⭒─ׄ─ׄ─⭒─ׅ─ׄ─⭒─ׄ─ׄ─⭒─ׄ─ׄ─*
+  before: `© mᥱᥒᥙ ᥆𝖿іᥴіᥲᥣ ძᥱ ᥡᥲᥱm᥆rіᑲ᥆𝗍 ☁️
 
-“ Hola *%name* soy *Ai-Yaemori*, %greeting ”
+┏━━━━━━━━━━━━━━━━━━━⫸
+┃╭──────────────────╸
+┃│ ✧ *INFORMACIÓN USER* ✧
+┃│
+┃│「🌱」 𝐂𝐥𝐢𝐞𝐧𝐭𝐞: \`\`\`%name\`\`\`
+┃│「💫」 𝐄𝐱𝐩: \`\`\`%exp\`\`\`
+┃│「🍪」 𝐂𝐨𝐨𝐤𝐢𝐞𝐬: \`\`\`%cookies\`\`\`
+┃│「🌴」 𝐍𝐢𝐯𝐞𝐥: \`\`\`%level\`\`\`
+┃│「☁️」 𝐑𝐚𝐧𝐠𝐨: \`\`\`%role\`\`\`
+┃╰──────────────────╸
+┗━━━━━━━━━━━━━━━━━━━⫸
 
-╭────═[ *INFO - BOT* ]═─────⋆
-│╭───────────────···
-┴│✯ 🍟 *Bot:* Ai Yaemori - MD 
-✩│✯ 🍂 *Modo* Público
-✩│✯ ✨️ *Baileys:* Multi Device
-✩│✯ ⌛️ *Tiempo Activo:* %muptime
-┬│✯ 🫂 *Usuarios:* %totalreg
-│╰────────────────···
-╰────────═┅═─────────
-%readmore
-╭────═[ *INFO - USER* ]═─────⋆
-│╭───────────────···
-┴│✯ 🚩 *Cliente:* %name
-✩│✯ 💥 *Exp:* %exp
-✩│✯ 🌟 *Estrellas:* %estrellas
-✩│✯ 🐢 *Nivel:* %level
-┬│✯ ⚓ *Rango:* %role
-│╰────────────────···
-╰────────═┅═─────────
-%readmore
-*─ׄ─ׄ─⭒─ׄ─ׅ─ׄ⭒─ׄ─ׄ─⭒─ׄ─ׄ─⭒─ׄ─ׅ─*
+┏━━━━━━━━━━━━━━━━━━━⫸
+┃╭──────────────────╸
+┃│ ✧ *INFORMACIÓN* ✧
+┃│  
+┃│「👑」 𝐃𝐞𝐯𝐞𝐥𝐨𝐩𝐞𝐫: ⏤͟͟͞͞Dev-Diego
+┃│「🪴」 𝐌𝐨𝐝𝐨: \`\`\`Publico\`\`\`
+┃│「📚」 𝐋𝐢𝐛𝐫𝐞𝐫𝐢𝐚: \`\`\`Baileys\`\`\`
+┃│「🕒」 𝐀𝐜𝐭𝐢𝐯𝐢𝐝𝐚𝐝: \`\`\`%muptime\`\`\`
+┃│「👤」 𝐔𝐬𝐮𝐚𝐫𝐢𝐨𝐬: \`\`\`%totalreg\`\`\`
+┃╰──────────────────╸
+┗━━━━━━━━━━━━━━━━━━━⫸
 
 \t*L I S T A  -  D E  -  C O M A N D O S* 
 `.trimStart(),
-      header: '╭───═[ %category ]═────⋆\n│╭───────────────···',
-  body: '││ %cmd\n',
-  footer: '│╰────────────────···\n╰────────═┅═─────────\n',
+    header: '┏━━━━━━━━━━━━━━━━━━━⫸\n┃ *✧ %category ✧*\n┃╭──────────────────╸',
+  body: '┃│ %cmd',
+  footer: '┃╰──────────────────╸\n┗━━━━━━━━━━━━━━━━━━━⫸\n',
   after: `> ${dev}`,
 }
 let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
   try {
     let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
-    let { exp, estrellas, level, role } = global.db.data.users[m.sender]
+    let { exp, cookies, level, role } = global.db.data.users[m.sender]
     let { min, xp, max } = xpRange(level, global.multiplier)
     let name = await conn.getName(m.sender)
     let d = new Date(new Date + 3600000)
@@ -106,7 +104,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
         help: Array.isArray(plugin.tags) ? plugin.help : [plugin.help],
         tags: Array.isArray(plugin.tags) ? plugin.tags : [plugin.tags],
         prefix: 'customPrefix' in plugin,
-        estrellas: plugin.estrellas,
+        cookies: plugin.cookies,
         premium: plugin.premium,
         enabled: !plugin.disabled,
       }
@@ -153,66 +151,23 @@ botofc: (conn.user.jid == global.conn.user.jid ? '🚩 𝙴𝚂𝚃𝙴 𝙴𝚂
 totalexp: exp,
 xp4levelup: max - exp,
 github: _package.homepage ? _package.homepage.url || _package.homepage : '[unknown github url]',
-greeting, level, estrellas, name, weton, week, date, dateIslamic, time, totalreg, rtotalreg, role,
+greeting, level, cookies, name, weton, week, date, dateIslamic, time, totalreg, rtotalreg, role,
 readmore: readMore
 }
 text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
 
-const who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-
-const pp = await conn.profilePictureUrl(who, 'image').catch(_ => 'https://telegra.ph/file/327f6ad853cb4f405aa80.jpg')
-
-  let category = "video"
-  const db = './media/database/db.json'
-  const db_ = JSON.parse(fs.readFileSync(db))
-  const random = Math.floor(Math.random() * db_.links[category].length)
-  const rlink = db_.links[category][random]
-  global.vid = rlink
-  const response = await fetch(vid)
-  const gif = await response.buffer()
- // const img = imagen1
-
-// await conn.reply(m.chat, '*ꪹ͜𓂃͡𝗖𝗮𝗿𝗴𝗮𝗻𝗱𝗼 𝗘𝗹 𝗠𝗲𝗻𝘂 𝗗𝗲𝗹 𝗕𝗼𝘁...𓏲੭*', fkontak, { contextInfo:{ forwardingScore: 2022, isForwarded: true, externalAdReply: {title: packname, body: '🍟 ¡Super Bot De WhatsApp!', sourceUrl: redes, thumbnail: icons }}})
-
-// await conn.reply(m.chat, '🍟 Enviando el menú.....', m, rcanal)
-
 await m.react('⭐️') 
 
-//await conn.sendFile(m.chat, imagen1, 'yaemori.jpg', text.trim(), fkontak, null, rcanal)
-
-await conn.sendMessage(
-  m.chat,
-  { video: { url: vid }, caption: text.trim(),
-  contextInfo: {
-    mentionedJid: [m.sender],
-    isForwarded: true,
-    forwardedNewsletterMessageInfo: {
-      newsletterJid: '120363263466636910@newsletter',
-      newsletterName: '『✯ Team Channel Ai Yaemori ✯』',
-      serverMessageId: -1,
-    },
-    forwardingScore: 999,
-    externalAdReply: {
-      title: '🍟 Ai Yaemori - MD 🚩',
-      body: dev,
-      thumbnailUrl: icono,
-      sourceUrl: redes,
-      mediaType: 1,
-      renderLargerThumbnail: false,
-    },
-  },
-
-  gifPlayback: true, gifAttribution: 0 },
-  { quoted: fkontak })
+await conn.sendMessage(m.chat, {text: text, contextInfo: { forwardingScore: 999, isForwarded: true, forwardedNewsletterMessageInfo: { newsletterName: '© ᥡᥲᥱm᥆rіᑲ᥆𝗍 - ᥴһᥲᥒᥒᥱᥣ 🌱', newsletterJid: "120363263466636910@newsletter", }, externalAdReply: { title: '© ᥡᥲᥱm᥆rі ᑲ᥆𝗍 - mძ ⚡︎', body: dev, thumbnailUrl: 'https://qu.ax/OlTj.jpg', sourceUrl: redeshost, mediaType: 1, renderLargerThumbnail: true }}}, {quoted: fkontak})
 
   } catch (e) {
-    conn.reply(m.chat, '🔵 Lo sentimos, el menú tiene un error', m, rcanal, )
+    conn.reply(m.chat, '❌️ Lo sentimos, el menú tiene un error', m, rcanal, )
     throw e
   }
 }
 handler.help = ['menu']
 handler.tags = ['main']
-handler.command = ['menu', 'menú', 'menuall', 'allmenú', 'allmenu', 'menucompleto'] 
+handler.command = ['menu', 'help', 'menú', 'menuall', 'allmenú', 'allmenu', 'menucompleto'] 
 handler.register = true
 
 export default handler
